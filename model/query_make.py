@@ -20,9 +20,17 @@ def data_log(data):
         cursor.close()
         con.close()
 
+from datetime import datetime
+import pytz
+
 def get_time():
     # 取得當前時間
-    current_time = datetime.now()
+    current_time_utc = datetime.utcnow()  # 使用 UTC 時間
+    taipei_timezone = pytz.timezone('Asia/Taipei')
+    
+    # 將 UTC 時間轉換為台北時區
+    current_time_taipei = current_time_utc.replace(tzinfo=pytz.utc).astimezone(taipei_timezone)
+    
     # 格式化為指定的字符串
-    formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
+    formatted_time = current_time_taipei.strftime("%Y-%m-%d %H:%M:%S")
     return formatted_time
