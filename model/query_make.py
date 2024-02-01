@@ -25,7 +25,7 @@ import pytz
 
 def get_time():
     # 取得當前時間
-    current_time_utc = datetime.utcnow()  # 使用 UTC 時間
+    current_time_utc = datetime.utcnow()
     taipei_timezone = pytz.timezone('Asia/Taipei')
     
     # 將 UTC 時間轉換為台北時區

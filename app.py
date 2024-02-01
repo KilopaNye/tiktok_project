@@ -19,25 +19,25 @@ while(flag>0):
     # print(result["itemList"][0]["stats"])
     for i in range(len(result["itemList"])):
         if result["itemList"][i]["createTime"] < 1706699830:
-            break
-        stats = result["itemList"][i]["stats"]
-        post_name = result["itemList"][i]["desc"]
-        post_id = result["itemList"][i]["id"]
-        data = {
-            "post_id":post_id,
-            "post_name":post_name,
-            "likes":stats["diggCount"],
-            "comments":stats["commentCount"],
-            "favorites":stats["collectCount"],
-            "shares":stats["shareCount"],
-            "hourly_timestamp":time_now
-        }
-        res = data_log(data)
-        if res:
-            print("資料建立成功",time_now)
+            stats = result["itemList"][i]["stats"]
+            post_name = result["itemList"][i]["desc"]
+            post_id = result["itemList"][i]["id"]
+            data = {
+                "post_id":post_id,
+                "post_name":post_name,
+                "likes":stats["diggCount"],
+                "comments":stats["commentCount"],
+                "favorites":stats["collectCount"],
+                "shares":stats["shareCount"],
+                "hourly_timestamp":time_now
+            }
+            res = data_log(data)
+            if res:
+                print("資料建立成功",time_now)
+            else:
+                print("意外的錯誤",time_now)
         else:
-            print("意外的錯誤",time_now)
-
+            break
     time.sleep(3600)
     flag-=3600
 
